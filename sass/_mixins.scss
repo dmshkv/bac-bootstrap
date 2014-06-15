@@ -1,0 +1,76 @@
+
+@mixin white-gradient{
+  //http://www.colorzilla.com/gradient-editor/#fcfcfc+0,dcdcdc+100;Custom
+  background: #fcfcfc; /* Old browsers */
+  background: -moz-linear-gradient(top,  #fcfcfc 0%, #dcdcdc 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fcfcfc), color-stop(100%,#dcdcdc)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #fcfcfc 0%,#dcdcdc 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #fcfcfc 0%,#dcdcdc 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #fcfcfc 0%,#dcdcdc 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #fcfcfc 0%,#dcdcdc 100%); /* W3C */
+  //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#dcdcdc',GradientType=0 ); /* IE6-9 */
+  &:hover{
+    /*http://www.colorzilla.com/gradient-editor/#fcfcfc+0,c8c8c8+100;Custom*/
+    background: #fcfcfc; /* Old browsers */
+    background: -moz-linear-gradient(top,  #fcfcfc 0%, #c8c8c8 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fcfcfc), color-stop(100%,#c8c8c8)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #fcfcfc 0%,#c8c8c8 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #fcfcfc 0%,#c8c8c8 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #fcfcfc 0%,#c8c8c8 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #fcfcfc 0%,#c8c8c8 100%); /* W3C */
+    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#c8c8c8',GradientType=0 ); /* IE6-9 */
+  }
+}
+
+  // keyframes mixin
+  @mixin keyframes($name) {
+    @-webkit-keyframes #{$name} {
+      @content;
+    }
+    /*
+    @-o-keyframes #{$name}{
+      @content;
+    }
+    */
+    @-moz-keyframes #{$name} {
+      @content;
+    }
+    @-ms-keyframes #{$name} {
+      @content;
+    }
+    @keyframes #{$name} {
+      @content;
+    }
+  }
+
+ /*
+   @include keyframes(shake) {
+      100% {
+        left:20px;
+      }
+    }
+ */
+ @mixin animation($animate...) {
+   $max: length($animate);
+   $animations: '';
+
+   @for $i from 1 through $max {
+     $animations: #{$animations + nth($animate, $i)};
+
+     @if $i < $max {
+       $animations: #{$animations + ", "};
+     }
+   }
+   -webkit-animation: $animations;
+   -moz-animation:    $animations;
+   -o-animation:      $animations;
+   animation:         $animations;
+ }
+ /*
+ .object-to-animate {
+  @include animation('move-the-object .5s 1', 'move-the-object-again .5s 1 .5s');
+  //стандартный запуск анимации
+  //имя - время старта - ф-ия - время - повтор - режим (играть ли анимацию назад alternate)
+  //animation: myfirst 5s linear 2s infinite alternate;
+}
+ */
