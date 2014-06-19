@@ -63,7 +63,6 @@ require.config({
         datepicker_localization:{
             deps: ['jqueryui']
         },
-        ,
         L10n :{
             exports : "L10n"
         },
